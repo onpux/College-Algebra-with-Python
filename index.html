@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>College Algebra with Python</title>
+    <link rel="stylesheet" href="algebra_styles.css">
+</head>
+<body>
+    <header>
+        <h1>College Algebra with Python</h1>
+        <p>Explora álgebra universitaria y visualizaciones inspiradas en Python, ¡directamente en tu navegador!</p>
+    </header>
+    <main>
+        <section class="card">
+            <h2>Calculadora de Funciones Cuadráticas</h2>
+            <div class="input-row">
+                <input type="number" id="a" placeholder="a (x²)" step="any">
+                <input type="number" id="b" placeholder="b (x)" step="any">
+                <input type="number" id="c" placeholder="c" step="any">
+                <button onclick="solveQuadratic()">Resolver y Graficar</button>
+            </div>
+            <div id="quad-result" class="result"></div>
+            <canvas id="quad-plot" width="400" height="220"></canvas>
+        </section>
+        <section class="card">
+            <h2>Simulador de Sistemas de Ecuaciones Lineales</h2>
+            <div class="input-row">
+                <input type="number" id="l-a1" placeholder="a₁" step="any">
+                <input type="number" id="l-b1" placeholder="b₁" step="any">
+                <input type="number" id="l-c1" placeholder="c₁" step="any">
+                <input type="number" id="l-a2" placeholder="a₂" step="any">
+                <input type="number" id="l-b2" placeholder="b₂" step="any">
+                <input type="number" id="l-c2" placeholder="c₂" step="any">
+                <button onclick="solveLinearSystem()">Resolver</button>
+            </div>
+            <div id="linear-result" class="result"></div>
+        </section>
+        <section class="card">
+            <h2>Resolución Paso a Paso de Ecuaciones</h2>
+            <div class="input-row">
+                <input type="text" id="step-eq" placeholder="Ej: 2x + 3 = 7">
+                <button onclick="solveStepByStep()">Resolver Paso a Paso</button>
+            </div>
+            <div id="step-result" class="result"></div>
+        </section>
+    </main>
+    <footer>
+        <p>Hecho con HTML, CSS y JavaScript. Inspirado en álgebra y visualización con Python.</p>
+    </footer>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="algebra_app.js"></script>
+</body>
+</html>
