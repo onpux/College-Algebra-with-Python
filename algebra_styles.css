@@ -4,6 +4,7 @@ body {
   margin: 0;
   padding: 0;
   min-height: 100vh;
+  position: relative;
 }
 header, footer {
   text-align: center;
@@ -19,13 +20,26 @@ main {
   padding: 40px 32px 32px 32px;
   border: 1.5px solid #7ecbff;
 }
+#moon-bg {
+  position: fixed;
+  top: 0; left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 0;
+  pointer-events: none;
+}
 .card {
   margin-bottom: 40px;
-  background: #232b4d;
-  border-radius: 14px;
-  box-shadow: 0 2px 8px #7ecbff22;
-  padding: 24px 18px 18px 18px;
-  border: 1px solid #2a3557;
+  background: rgba(255,255,255,0.22);
+  border-radius: 1.2rem;
+  box-shadow: 0 4px 24px #90caf933, 0 1.5px 0 #fff2;
+  padding: 2rem 2.2rem 1.5rem 2.2rem;
+  color: #222;
+  backdrop-filter: blur(2px);
+  transition: box-shadow 0.2s;
+}
+.card:hover {
+  box-shadow: 0 8px 32px #90caf955, 0 2px 0 #fff3;
 }
 .card h2 {
   text-align: center;
