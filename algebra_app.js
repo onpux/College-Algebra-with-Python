@@ -69,18 +69,18 @@ function solveLinearSystem() {
 // --- Resolución Paso a Paso de Ecuaciones (ax + b = c) ---
 function solveStepByStep() {
   const eq = document.getElementById('step-eq').value.replace(/\s+/g, '');
-  // Solo soporta ecuaciones tipo ax+b=c
+  // Only supports equations of the form ax+b=c
   const match = eq.match(/^([+-]?\d*)x([+-]\d+)?=(.+)$/);
   if (!match) {
-    document.getElementById('step-result').textContent = 'Formato no soportado. Ejemplo: 2x+3=7';
+    document.getElementById('step-result').textContent = 'Unsupported format. Example: 2x+3=7';
     return;
   }
   let a = match[1] === '' || match[1] === '+' ? 1 : match[1] === '-' ? -1 : parseFloat(match[1]);
   let b = match[2] ? parseFloat(match[2]) : 0;
   let c = parseFloat(match[3]);
-  let steps = `Ecuación: ${a}x + ${b} = ${c}\n`;
-  steps += `Paso 1: Restar ${b} a ambos lados → ${a}x = ${c-b}\n`;
-  steps += `Paso 2: Dividir ambos lados entre ${a} → x = ${(c-b)/a}`;
+  let steps = `Equation: ${a}x + ${b} = ${c}\n`;
+  steps += `Step 1: Subtract ${b} from both sides → ${a}x = ${c-b}\n`;
+  steps += `Step 2: Divide both sides by ${a} → x = ${(c-b)/a}`;
   document.getElementById('step-result').textContent = steps;
 }
 
