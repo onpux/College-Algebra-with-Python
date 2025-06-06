@@ -83,3 +83,69 @@ function solveStepByStep() {
   steps += `Paso 2: Dividir ambos lados entre ${a} → x = ${(c-b)/a}`;
   document.getElementById('step-result').textContent = steps;
 }
+
+// Animated moving moon background
+(function() {
+  const canvas = document.getElementById('moon-bg');
+  if (!canvas) return;
+  const ctx = canvas.getContext('2d');
+  let width = window.innerWidth;
+  let height = window.innerHeight;
+  canvas.width = width;
+  canvas.height = height;
+
+  function resize() {
+    width = window.innerWidth;
+    height = window.innerHeight;
+    canvas.width = width;
+    canvas.height = height;
+  }
+  window.addEventListener('resize', resize);
+
+  let t = 0;
+  function moonPath(t) {
+    // t: 0 to 1, full cycle
+    // Move in a gentle arc from left to right and back
+    const margin = 80;
+    const cx = width / 2;
+    const cy = height / 3;
+    const rx = (width / 2) - margin;
+    const ry = (height / 3) - margin;
+    // Angle: 0 to PI (left to right), then PI to 0 (right to left)
+    const angle = Math.PI * (1 - Math.abs(2 * t - 1));
+    const x = cx + rx * Math.cos(angle - Math.PI);
+    const y = cy + ry * Math.sin(angle - Math.PI);
+    return [x, y];
+  }
+
+  function drawMoon(x, y) {
+    ctx.save();
+    ctx.clearRect(0, 0, width, height);
+    // Moon glow
+    const gradient = ctx.createRadialGradient(x, y, 0, x, y, 48);
+    gradient.addColorStop(0, '#fffbe7');
+    gradient.addColorStop(0.5, '#e0e0e0');
+    gradient.addColorStop(1, 'rgba(255,255,255,0)');
+    ctx.beginPath();
+    ctx.arc(x, y, 48, 0, 2 * Math.PI);
+    ctx.fillStyle = gradient;
+    ctx.fill();
+    // Moon core
+    ctx.beginPath();
+    ctx.arc(x, y, 28, 0, 2 * Math.PI);
+    ctx.fillStyle = '#f7f7f7';
+    ctx.shadowColor = '#fffbe7';
+    ctx.shadowBlur = 18;
+    ctx.fill();
+    ctx.restore();
+  }
+
+  function animateMoon() {
+    t += 0.0007;
+    if (t > 1) t = 0;
+    const [x, y] = moonPath(t);
+    drawMoon(x, y);
+    requestAnimationFrame(animateMoon);
+  }
+  animateMoon();
+})();
